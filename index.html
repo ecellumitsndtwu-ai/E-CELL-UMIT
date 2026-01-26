@@ -59,6 +59,15 @@
   font-family: 'Cabin Condensed', 'Inter', sans-serif;
   position: relative;
   overflow-x: hidden;
+  touch-action: pan-y; /* prevent mobile scroll conflicts */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Make section headings and card titles the site blue */
@@ -131,12 +140,14 @@ section:not(#about) h2::after {
 
   /* Primary button subtle hover and focus states */
   .btn-primary {
-    transition: box-shadow 0.18s ease, transform 0.12s ease;
+    transition: box-shadow 0.18s cubic-bezier(0.22, 1, 0.36, 1), transform 0.12s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, box-shadow;
+    transform: translate3d(0,0,0);
   }
 
   .btn-primary:hover {
     box-shadow: 0 10px 30px rgba(14,165,233,0.16);
-    transform: translateY(-2px);
+    transform: translate3d(0,-2px,0);
   }
 
   .btn-primary:focus-visible {
@@ -264,7 +275,7 @@ section:not(#about) h2::after {
   transform: translate3d(-50%, -50%, 0);
   border-radius: 1.5rem;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
   overflow: hidden;
 }
@@ -520,19 +531,20 @@ section:not(#about) h2::after {
       box-shadow: 0 8px 22px rgba(0,0,0,0.12), 0 0 36px rgba(255,215,0,0.22);
       border: 1px solid rgba(255,215,0,0.22);
       padding: 1rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
       position: relative; /* fixes hover expansion glitch by constraining absolute children */
       isolation: isolate; /* isolate stacking context to prevent bleed-through */
       z-index: 0;
       margin: 0 auto;
       box-sizing: border-box;
+      will-change: transform, box-shadow;
+      transform: translate3d(0,0,0);
     }
 
     .team-card:hover {
-      transform: translateY(-15px);
+      transform: translate3d(0,-15px,0);
       box-shadow: 0 32px 80px rgba(0,0,0,0.32), 0 0 100px rgba(255,215,0,0.36);
       z-index: 10; /* bring hovered card above neighbours */
-      will-change: transform;
     }
 
     .team-image-container {
