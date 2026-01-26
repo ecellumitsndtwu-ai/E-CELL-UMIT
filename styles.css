@@ -1,0 +1,9 @@
+.team-grid { gap: 10px !important; }
+}
+
+/* Gentle parallax-like slide for mobile hero img */
+@media (max-width: 768px) {
+  #hero-img {
+    transition: opacity 0.6s ease;
+  }
+}

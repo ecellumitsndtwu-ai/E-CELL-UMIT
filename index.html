@@ -1,0 +1,1933 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>E‑Cell UMIT | We Aspire • Build • Conquer</title>
+
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            }
+          },
+          boxShadow: {
+            card: '0 10px 30px rgba(14,165,233,0.12)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- AOS (Animate on Scroll) -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    html { scroll-behavior: smooth; }
+  body {
+  /* subtle off-white with a cool sky tint to reduce harsh whiteness */
+  background: linear-gradient(to right top, #fbfdff, #f6f9fc);
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Cabin Condensed', 'Inter', sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Make section headings and card titles the site blue */
+section h2 { color: #0284C7 !important; }
+.card h3, .card h4, .card-title, .card .title, .reason-card h3 { color: #0284C7 !important; }
+
+/* Section subline: muted supporting text under headings */
+.section-subline::before { content: '\00a0"'; }
+
+/* Thin grey separator between consecutive sections */
+section + section { border-top: 1px solid #e5e7eb; padding-top: calc(2rem - 1px); }
+
+
+
+.typing-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #e9e5e3;
+}
+
+/* Section subline: muted supporting text under headings */
+.section-subline {
+  display: block;
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: rgba(2,132,199,0.92); /* strong sky-blue for visibility */
+  margin-top: 1rem; /* generous spacing below heading */
+  margin-bottom: 1.5rem;
+  max-width: 880px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  position: relative;
+}
+
+.section-subline::before,
+.section-subline::after {
+  color: rgba(2,132,199,0.92);
+  font-style: italic;
+}
+
+.section-subline::before { content: '“\00a0'; }
+.section-subline::after  { content: '\00a0”'; }
+
+/* Underline for all section headings except About */
+section:not(#about) h2 {
+  position: relative;
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+section:not(#about) h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -6px;
+  width: 72px;
+  height: 3px;
+  background: linear-gradient(90deg,#7dd3fc,#0ea5e9);
+  border-radius: 2px;
+  opacity: 0.95;
+}
+
+  /* Primary button subtle hover and focus states */
+  .btn-primary {
+    transition: box-shadow 0.18s ease, transform 0.12s ease;
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 10px 30px rgba(14,165,233,0.16);
+    transform: translateY(-2px);
+  }
+
+  .btn-primary:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 6px rgba(14,165,233,0.10), 0 6px 18px rgba(14,165,233,0.12);
+  }
+
+.constant {
+  color: #f7f6f5; /* match typing text color */
+}
+
+.typing {
+  border-right: 3px solid #eeeef7;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.fade {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ecell-animation-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 60px 0 40px 0;
+  gap: 40px;
+}
+
+.ecell-animation-container {
+  position: relative;
+  width: 420px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+#ecell-text {
+  font-size: 48px;
+  font-weight: bold;
+  color: #313131;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0;
+  padding: 0 0 0 10px;
+  animation: textreveal 3.5s forwards;
+  animation-delay: 0.2s;
+}
+
+#ecell-ball {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 32px;
+  width: 32px;
+  background-color: #f57724;
+  border-radius: 50%;
+  animation: ballmove 3.5s forwards;
+  z-index: 2;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.15);
+}
+
+#ecell-logo {
+  width: 110px;
+  height: 110px;
+  border-radius: 12px;
+  opacity: 0;
+  animation: logofadein 1s 3.2s forwards;
+  background: #fff;
+  object-fit: contain;
+  box-shadow: 0 2px 16px rgba(30, 64, 175, 0.10);
+}
+
+@keyframes ballmove {
+  0%   { left: 0; transform: translateY(-50%) scale(0.1);}
+  10%  { left: 0; transform: translateY(-50%) scale(0.5);}
+  40%  { left: 320px; transform: translateY(-50%) scale(0.5);}
+  60%  { left: 320px; transform: translateY(-50%) scale(0.1);}
+  70%  { left: 320px; transform: translateY(-50%) scale(0.15);}
+  80%  { left: 320px; transform: translateY(-50%) scale(0.1);}
+  90%  { left: 320px; transform: translateY(-50%) scale(0.15);}
+  100% { left: 320px; transform: translateY(-50%) scale(0.1);}
+}
+
+@keyframes textreveal {
+  0% { width: 0; }
+  10% { width: 0; }
+  40% { width: 320px; }
+  100% { width: 320px; }
+}
+
+@keyframes logofadein {
+  to { opacity: 1; }
+}
+
+/* 3D CAROUSEL - FIXED 2D STYLES FOR RELIABLE FUNCTIONALITY AND FIT */
+.hero-carousel-container {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.slides-container {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  border-radius: 1.5rem;
+}
+
+.slide-item {
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+  overflow: hidden;
+}
+
+/* Position 1: Hidden on right (previous) */
+.slide-item:nth-child(1) {
+  left: 125%;
+  opacity: 0;
+  z-index: 1;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+/* Position 2: ACTIVE - Full screen */
+.slide-item:nth-child(2) {
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  transform: translate(0, 0) !important;
+  border-radius: 1.5rem;
+  z-index: 5;
+  opacity: 1;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* Position 3: First stacked on left */
+.slide-item:nth-child(3) {
+  left: -25%;
+  width: 180px;
+  height: 270px;
+  transform: translate(-50%, -50%) translateX(-20px) scale(0.9);
+  z-index: 4;
+  opacity: 0.85;
+}
+
+/* Position 4: Second stacked */
+.slide-item:nth-child(4) {
+  left: -35%;
+  width: 180px;
+  height: 270px;
+  transform: translate(-50%, -50%) translateX(-40px) scale(0.85);
+  z-index: 3;
+  opacity: 0.7;
+}
+
+/* Position 5+: Hidden on left */
+.slide-item:nth-child(n+5) {
+  left: -45%;
+  width: 180px;
+  height: 270px;
+  transform: translate(-50%, -50%) translateX(-60px) scale(0.8);
+  z-index: 2;
+  opacity: 0;
+}
+
+.slide-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  z-index: 1;
+  transition: all 0.6s ease;
+}
+
+.slide-content {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  right: 2rem;
+  color: white;
+  background: transparent;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  display: none;
+  z-index: 6;
+}
+
+/* ONLY show content on active slide (position 2) */
+.slide-item:nth-child(2) .slide-content {
+  display: block !important;
+}
+
+.slide-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+}
+
+.slide-item:nth-child(2) .slide-title {
+  animation: slideUpBlur 1s ease-in-out 0s forwards;
+}
+
+.slide-description {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+}
+
+.slide-item:nth-child(2) .slide-description {
+  animation: slideUpBlur 1s ease-in-out 0.3s forwards;
+}
+
+  .see-more-btn {
+  background: #38bdf8;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.75rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  opacity: 0;
+  box-shadow: 0 4px 15px rgba(56,189,248,0.22);
+}
+
+.slide-item:nth-child(2) .see-more-btn {
+  animation: slideUpBlur 1s ease-in-out 0.6s forwards;
+}
+
+.see-more-btn:hover {
+  background: #0ea5e9;
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(14,165,233,0.32);
+}
+
+
+
+@keyframes slideUpBlur {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+    filter: blur(33px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-carousel-container,
+  .slides-container {
+    height: 350px;
+  }
+
+  .slide-content {
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    padding: 1rem;
+  }
+
+  .slide-title {
+    font-size: 1.5rem;
+  }
+
+  .slide-description {
+    font-size: 0.9rem;
+  }
+
+  .see-more-btn {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.9rem;
+  }
+}
+
+#hero-section {
+  transition: background-image 0.6s cubic-bezier(.4,0,.2,1);
+}
+
+/* HERO SECTION - ADD GLASSMORPHISM TO BACKGROUND */
+      #hero-section {
+        position: relative;
+        background-image: url('image/VENTUREVAULT.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        transition: background 0.6s ease;
+      }
+
+      /* Glassmorphic overlay layer on hero background */
+      #hero-section::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        background: 
+          radial-gradient(600px 280px at 10% 20%, rgba(0,184,255,0.04), transparent 12%),
+          radial-gradient(500px 250px at 90% 80%, rgba(0,114,255,0.03), transparent 14%),
+          rgba(5,12,32,0.32);
+        backdrop-filter: blur(8px);
+        pointer-events: none;
+        border-top: 1px solid rgba(255,255,255,0.06);
+        box-shadow: inset 0 1px 24px rgba(0,184,255,0.04);
+      }
+
+      /* Ensure content sits above glass layer */
+      #hero-section .max-w-7xl {
+        position: relative;
+        z-index: 3;
+      }
+
+      @media (max-width: 768px) {
+        #hero-section {
+          background-position: top;
+          background-size: 120%;
+        }
+      }
+
+      @media (max-width: 768px) {
+        [data-aos] {
+          transform: none !important;
+          opacity: 1 !important;
+        }
+      }
+
+    /* Team Section Styles */
+    .team-grid {
+      /* Use CSS Grid for a full-width constrained layout with equal gutters */
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px; /* equal gutters */
+      font-family: 'Poppins', sans-serif;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 16px;
+      box-sizing: border-box;
+    }
+
+    .team-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: auto;
+      width: 100%;
+      max-width: 320px; /* limit card width while allowing grid to size columns */
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.12), 0 0 36px rgba(255,215,0,0.22);
+      border: 1px solid rgba(255,215,0,0.22);
+      padding: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative; /* fixes hover expansion glitch by constraining absolute children */
+      isolation: isolate; /* isolate stacking context to prevent bleed-through */
+      z-index: 0;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+
+    .team-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.32), 0 0 100px rgba(255,215,0,0.36);
+      z-index: 10; /* bring hovered card above neighbours */
+      will-change: transform;
+    }
+
+    .team-image-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid #fff;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .team-card:hover .team-image-container {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+
+    .team-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* Disable image zoom on hover - keep images static */
+    .team-card:hover .team-image {
+      transform: none !important;
+    }
+
+    .team-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      /* avoid animating opacity to prevent compositing bleed; use transform instead */
+      transform: translateY(12px);
+      transition: transform 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      visibility: hidden;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .team-card:hover .team-overlay {
+      transform: translateY(0);
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .overlay-content {
+      text-align: center;
+      color: white;
+      padding: 1rem;
+    }
+
+    .overlay-content .role {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #ffd700;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s, transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+    }
+
+    .team-card:hover .overlay-content .role {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .overlay-content .name {
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s, transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s;
+    }
+
+    .team-card:hover .overlay-content .name {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .icons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s, transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s;
+    }
+
+    .team-card:hover .icons {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      font-size: 1.2rem;
+      transition: background 0.3s ease, transform 0.3s ease;
+      text-decoration: none;
+    }
+
+    .icon:hover {
+      background: rgba(255,255,255,0.2);
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .linkedin-icon:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .gmail-icon:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .team-bottom {
+      padding: 1rem;
+      background: white;
+      text-align: center;
+      z-index: 1;
+      position: relative;
+    }
+
+    .team-card:hover .team-bottom {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    /* ============================= */
+    /* COORDINATOR CARD FIX         */
+    /* Hover state = default state  */
+    /* ============================= */
+
+    /* Remove transparent overlay for coordinator */
+    .coordinator-card .team-overlay { display: none !important; }
+
+    /* Coordinator bottom icons: hidden by default, show on hover */
+    .coordinator-card .icons-bottom {
+      position: absolute;
+      left: 50%;
+      bottom: -28px; /* place below the name when visible */
+      transform: translate(-50%, 8px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+      z-index: 6;
+      pointer-events: none;
+    }
+
+    .coordinator-card:hover .icons-bottom {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, 0);
+      pointer-events: auto;
+    }
+
+    /* Keep coordinator bottom visible on hover */
+    .coordinator-card:hover .team-bottom { opacity: 1 !important; }
+
+    /* Blue icons style */
+    .coordinator-card .icons-bottom .icon {
+      background: #0ea5e9 !important; /* blue background */
+      color: #ffffff !important;      /* white glyph */
+      border: none !important;
+      box-shadow: 0 6px 14px rgba(14,165,233,0.18);
+    }
+
+    /* Keep image normal (no expand on hover) */
+    .coordinator-card .team-image-container {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    /* Disable hover animation ONLY for coordinator, but add a golden glow on hover */
+    .coordinator-card:hover {
+      transform: none !important;
+      box-shadow: 0 22px 72px rgba(0,0,0,0.14) !important, 0 0 140px rgba(255,215,0,0.50) !important;
+    }
+
+    .coordinator-card:hover .team-image-container {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    /* Increase coordinator card length and add golden border/glow */
+    .coordinator-card {
+      min-height: 320px; /* taller card */
+      padding-bottom: 3.5rem; /* extra space at bottom for the icons overlay */
+      box-sizing: border-box;
+      border: 2px solid #ffd700; /* golden border */
+      border-radius: 1rem; /* ensure border follows card radius */
+      box-shadow: 0 14px 36px rgba(0,0,0,0.10), 0 0 56px rgba(255,215,0,0.28);
+      background-clip: padding-box;
+    }
+
+    @media (max-width: 768px) {
+      .coordinator-card { min-height: 420px; padding-bottom: 2.5rem; }
+    }
+
+    .role-bottom {
+      font-weight: bold;
+      color: #333;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .name-bottom {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .team-card {
+        width: 250px;
+      }
+
+      .team-image-container {
+        width: 140px;
+        height: 140px;
+      }
+
+      .overlay-content .name {
+        font-size: 1.4rem;
+      }
+
+      .icon {
+        width: 45px;
+        height: 45px;
+      }
+    }
+
+  /* hero title: use Inter */
+  #hero-section .hero-title {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    letter-spacing: 0.6px;
+  }
+
+
+
+/* ===== APPLE-STYLE RADIAL SECTION ===== */
+.radial-wrap{
+  max-width:1400px;
+  width:100%;
+  margin:0 auto;
+  display:flex;
+  gap:28px; /* space between cards */
+  align-items:stretch;
+  justify-content:flex-start;
+  flex-wrap:wrap;
+  padding:0 16px; /* parent-controlled left/right spacing */
+}
+.center-circle{
+  display:none; /* hide the original radial center when using row layout */
+}
+.gain-card{
+  background:var(--card);
+  border-radius:18px;
+  padding:26px;
+  border:1px solid rgba(37,99,235,.2);
+  box-shadow:0 20px 40px rgba(0,0,0,.08);
+  transition:transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s ease;
+}
+.gain-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 30px 60px rgba(37,99,235,.25);
+}
+/* Make the four radial cards share a row and size nicely */
+.radial-wrap .lore-card{
+  flex:1 1 0; /* let cards grow equally to fill the row */
+  min-width:220px; /* allow wrapping on smaller screens */
+  max-width:none;
+}
+
+@media (max-width:1100px){
+  .radial-wrap .lore-card{flex:1 1 45%; min-width:260px}
+}
+
+@media (max-width:700px){
+  .radial-wrap{padding:0 12px}
+  .radial-wrap .lore-card{flex:1 1 100%; min-width:0}
+}
+
+/* ===== LORE EXPLANATION SECTION ===== */
+.lore-grid{
+  max-width:1200px;
+  margin:140px auto 0;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:32px;
+}
+.lore-card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  background:var(--card);
+  border-radius:20px;
+  padding:32px;
+  box-shadow:0 20px 40px rgba(0,0,0,.08);
+  overflow:hidden;
+  cursor:pointer;
+  transition:transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s ease;
+}
+.lore-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent,rgba(37,99,235,.12),transparent);
+  transform:translateX(-100%);
+  transition:transform .7s ease;
+}
+.lore-card:hover::before{transform:translateX(100%)}
+.lore-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 30px 60px rgba(37,99,235,.25);
+}
+.lore-tag{
+  font-size:12px;
+  color:var(--blue);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  margin-bottom:12px;
+}
+.lore-title{
+  font-size:18px;
+  font-weight:600;
+  margin-bottom:6px;
+  transition:opacity .3s ease;
+  color: #0284C7; /* card heading color */
+}
+
+.lore-icon{
+  display:block;
+  width:140px;
+  height:auto;
+  object-fit:contain;
+  margin:18px auto 6px;
+  transition:opacity .45s ease, transform .45s cubic-bezier(.22,1,.36,1);
+}
+
+/* Keep card tall enough for image + content to avoid overlap */
+.lore-card{min-height:260px;}
+.card-content{position:relative;z-index:2;display:flex;flex-direction:column;gap:10px;align-items:center;}
+
+/* Hide descriptive text by default; reveal on hover */
+.lore-text{opacity:0;transform:translateY(12px);transition:opacity .45s ease, transform .45s ease}
+.lore-card:hover .lore-text{opacity:1;transform:translateY(0)}
+
+/* Fade & scale out the icon on hover (no absolute positioning) */
+.lore-card:hover .lore-icon{opacity:0;transform:scale(.85)}
+
+/* ---- Layered content-swap area (fixed height, absolute layers) ---- */
+.swap-area{
+  position:relative;
+  width:100%;
+  height:140px; /* fixed inner height — adjust if you want larger */
+  margin:12px 0 8px;
+  overflow:hidden;
+}
+.swap-layer{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px; /* keeps content away from edges */
+  transition:opacity .45s ease, transform .45s ease;
+}
+.swap-image{opacity:1;transform:scale(1)}
+.swap-text{opacity:0;transform:translateY(12px)}
+.lore-card:hover .swap-image{opacity:0;transform:scale(.95)}
+.lore-card:hover .swap-text{opacity:1;transform:translateY(0)}
+
+/* Keep title/tag visible but slightly subdued on hover */
+.lore-card .lore-title{transition:opacity .3s ease}
+.lore-card:hover .lore-title{opacity:.85}
+
+.lore-text{
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.6;
+  opacity:0;
+  transform:translateY(10px);
+  transition:opacity .4s ease, transform .4s ease;
+}
+.lore-card:hover .lore-text{opacity:1;transform:translateY(0)}
+.lore-card:hover .lore-title{opacity:.4}
+
+@media(max-width:900px){
+  .radial-wrap{grid-template-columns:1fr;grid-template-rows:auto}
+  .center-circle{grid-column:auto;grid-row:auto;margin:auto}
+  .pos-top,.pos-left,.pos-right,.pos-bottom{grid-column:auto;grid-row:auto}
+}
+
+    .event-timer-card {
+      width: 360px;
+      padding: 30px 26px 34px;
+      border-radius: 22px;
+      background: #FFFFFF; /* slightly warmer off-white */
+      text-align: center;
+      border: 1px solid #e5efff;
+      box-shadow: 0 18px 45px rgba(59, 130, 246, 0.15);
+      transition: box-shadow 0.4s ease, transform 0.4s ease;
+      position: relative;
+    }
+
+    .event-timer-card::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: 24px;
+      opacity: 0;
+      box-shadow: 0 0 25px rgba(59,130,246,0.55);
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .event-timer-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .event-timer-card:hover::after {
+      opacity: 1;
+    }
+
+    .label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: #3b82f6;
+      text-transform: uppercase;
+    }
+
+    .event-name {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 6px 0 20px;
+      color: #0f172a;
+    }
+
+    /* CIRCLE */
+    .circle-wrap {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      margin: 0 auto 12px;
+    }
+
+    svg {
+      width: 220px;
+      height: 220px;
+      transform: rotate(-90deg);
+    }
+
+    circle {
+      fill: none;
+      stroke-width: 12;
+    }
+
+    .bg {
+      stroke: #e5efff;
+    }
+
+    .progress {
+      stroke: #3b82f6;
+      stroke-linecap: round;
+      stroke-dasharray: 628;
+      stroke-dashoffset: 628;
+      transition: stroke-dashoffset 1s linear;
+    }
+
+    /* TIME TEXT */
+    .time {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .main-time {
+      font-size: 30px;
+      font-weight: 700;
+      color: #2563eb;
+    }
+
+    .sub-time {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-50 bg-white/70 backdrop-blur border-b border-primary-100" data-aos="fade-down">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="#" class="flex items-center gap-3">
+          <img src="image/officiallogo.png" alt="E-Cell UMIT Logo" class="h-12 w-12 rounded-2xl object-contain">
+          <span class="font-extrabold text-lg sm:text-xl tracking-tight">E‑Cell UMIT</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 font-medium">
+          <a href="#about" class="hover:text-primary-700">About</a>
+          <a href="core-team.html" class="hover:text-primary-700">Core Team</a>
+          <a href="#events" class="hover:text-primary-700">Events</a>
+          <a href="#join" class="hover:text-primary-700">Join Us</a>
+          <a href="#contact" class="hover:text-primary-700">Contact</a>
+          <a href="#join" class="ml-2 inline-flex items-center rounded-xl bg-primary-600 px-4 py-2 text-white shadow-card hover:bg-primary-700 transition">Apply Now</a>
+        </nav>
+        <!-- Mobile nav toggle (visible on small screens) -->
+        <button id="mobile-nav-toggle" class="md:hidden inline-flex items-center p-2 rounded-md" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open main menu">
+          <span class="h-6 w-6 flex items-center justify-center text-xl">☰</span>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile menu (hidden by default) -->
+    <div id="mobile-menu" class="hidden md:hidden absolute right-4 mt-2 w-56 bg-white rounded-md shadow-lg overflow-hidden z-50">
+      <div class="flex flex-col p-3">
+        <a href="#about" class="py-2 px-2 hover:bg-gray-100 rounded">About</a>
+        <a href="core-team.html" class="py-2 px-2 hover:bg-gray-100 rounded">Core Team</a>
+        <a href="#events" class="py-2 px-2 hover:bg-gray-100 rounded">Events</a>
+        <a href="#join" class="py-2 px-2 hover:bg-gray-100 rounded">Join Us</a>
+        <a href="#contact" class="py-2 px-2 hover:bg-gray-100 rounded">Contact</a>
+        <a href="#join" class="mt-2 inline-flex items-center justify-center rounded-xl bg-primary-600 px-4 py-2 text-white shadow-card hover:bg-primary-700 transition">Apply Now</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+<section id="hero-section" class="relative h-auto md:min-h-screen py-16 md:py-20 bg-center bg-cover" style="background-image: url('image/VENTUREVAULT.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; transition: background 0.6s ease;">
+    <img id="hero-img" class="block md:hidden absolute inset-0 w-full h-full object-contain" src="image/VENTUREVAULT.jpg" alt="Hero Image" />
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="grid md:grid-cols-2 gap-10 items-center md:min-h-[80vh]">
+        <!-- Left Column: Text Content -->
+        <div class="space-y-6" data-aos="fade-right">
+          <h1 class="hero-title text-5xl md:text-6xl font-bold tracking-wider  text-white">Welcome to  ECELL UMIT.</h1>
+          <div class="typing-container">
+            <span class="constant text-4xl md:text-5xl font-bold text-white">We</span>
+            <span class="typing" id="typing" style="font-size: 2.5rem; font-weight: 700; color: #7dd3fc;"></span>
+          </div>
+          <p class="text-lg text-white leading-relaxed max-w-md">
+            Join our innovation hub - a community that turns ideas into ventures through events, mentorship, and hands-on initiatives.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#join" class="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-xl font-semibold shadow-card hover:bg-primary-700 transition btn-primary">Join the Movement</a>
+            <a href="#events" class="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-xl font-semibold hover:bg-primary-700 transition btn-primary">Explore Events</a>
+          </div>
+        </div>
+
+        <!-- Right Column: 3D Carousel -->
+        <div class="hero-carousel-container w-full aspect-[4/5] md:aspect-[16/9] overflow-hidden rounded-xl" data-aos="fade-left">
+          <div class="slides-container">
+            <!-- Slide 1: Treasure Hunt (hidden left initially) -->
+            <div class="slide-item" data-bg="image/Untitled.png">
+              <img src="image/Untitled.png" class="w-full h-full object-cover" />
+              <div class="slide-content">
+                <h3 class="slide-title">Treasure Hunt</h3>
+                <p class="slide-description">Fun, Strategy, and Teamwork Adventure</p>
+                <a href="#events" class="see-more-btn">See More</a>
+              </div>
+            </div>
+
+            <!-- Slide 2: Venture Vault (ACTIVE initially) -->
+            <div class="slide-item" data-bg="image/VENTUREVAULT.jpg">
+              <img src="image/VENTUREVAULT.jpg" class="w-full h-full object-cover" />
+              <div class="slide-content">
+                <h3 class="slide-title">Venture Vault</h3>
+                <p class="slide-description">Flagship Pitching Competition</p>
+                <a href="#events" class="see-more-btn">See More</a>
+              </div>
+            </div>
+
+            <!-- Slide 3: Startup Day (first stack right) -->
+            <div class="slide-item" data-bg="image/startupp.png">
+              <img src="image/startupp.png" class="w-full h-full object-cover" />
+              <div class="slide-content">
+                <h3 class="slide-title">Startup Day</h3>
+                <p class="slide-description">Building Enterprises that Build the Nation</p>
+                <a href="#events" class="see-more-btn">See More</a>
+              </div>
+            </div>
+
+            <!-- Slide 4: Tech Careers Seminar (second stack right) -->
+            <div class="slide-item" data-bg="image/event3.jpeg">
+              <img src="image/event3.jpeg" class="w-full h-full object-cover" />
+              <div class="slide-content">
+                <h3 class="slide-title">Tech Careers Seminar</h3>
+                <p class="slide-description">Opportunities in Product Management & More</p>
+                <a href="#events" class="see-more-btn">See More</a>
+              </div>
+            </div>
+
+            <!-- Slide 5: Launchpad@UMIT (hidden) -->
+            <div class="slide-item" data-bg="image/18.jpg">
+              <img src="image/18.jpg" class="w-full h-full object-cover" />
+              <div class="slide-content">
+                <h3 class="slide-title">Launchpad@UMIT</h3>
+                <p class="slide-description">Spark Innovation, Creativity, and Entrepreneurial Thinking</p>
+                <a href="#events" class="see-more-btn">See More</a>
+              </div>
+            </div>
+
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- About -->
+  <section id="about" class="py-20 bg-white">
+    <style>
+      :root{
+        --sky:#38BDF8; --sky-soft:#E0F2FE; --text:#0F172A; --muted:#475569; --white:#FFFFFF;
+      }
+
+      #about *{margin:0;padding:0;box-sizing:border-box}
+
+      #about{
+        font-family:'Inter',system-ui,-apple-system,sans-serif;
+        background:#FFFFFF;
+        color:var(--text);
+        -webkit-font-smoothing:antialiased;
+        text-rendering:optimizeLegibility;
+      }
+
+      #about .about-inner{ padding:100px 8%; max-width:1200px; margin:auto; }
+
+      #about h2{
+        font-family:'Manrope','Inter',sans-serif;
+        font-size:44px; font-weight:700; letter-spacing:-0.03em; margin-bottom:24px; color:#0284C7; position:relative; display:inline-block;
+      }
+
+#about h2::after{ content:""; position:absolute; left:50%; bottom:-6px; width:100%; height:3px; background:linear-gradient(90deg,#38BDF8,#0EA5E9); transform:translateX(-50%) scaleX(0); transform-origin:center; transition:transform .4s ease; border-radius:2px; }
+#about h2:hover::after{ transform:translateX(-50%) scaleX(1); }
+
+      #about .about-text{ font-size:18px; line-height:1.75; color:var(--muted); max-width:900px; margin-bottom:72px; }
+
+      #about .reasons{ display:grid; grid-template-columns:repeat(3,1fr); gap:48px; margin-top:40px; }
+
+      #about .reason-card{ background:var(--white); border-radius:22px; padding:48px 32px 40px; text-align:center; position:relative; box-shadow:0 20px 50px rgba(15,23,42,.08); transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease; }
+
+      #about .reason-card::before, #about .reason-card::after{ content:""; position:absolute; width:68px; height:68px; border:6px solid var(--sky); filter: drop-shadow(0 0 10px rgba(56,189,248,.6)); transition: filter .4s ease, box-shadow .4s ease, border-color .4s ease; }
+      #about .reason-card::before{ top:-16px; right:-16px; border-left:none; border-bottom:none; border-radius:0 18px 0 0; }
+      #about .reason-card::after{ bottom:-16px; left:-16px; border-right:none; border-top:none; border-radius:0 0 0 18px; }
+
+      #about .reason-card:hover{ transform:translateY(-14px); box-shadow:0 40px 90px rgba(56,189,248,.35); }
+      #about .reason-card:hover::before, #about .reason-card:hover::after{ filter: drop-shadow(0 0 18px rgba(56,189,248,.85)); box-shadow:0 0 24px rgba(56,189,248,.6); border-color:#0EA5E9; }
+
+      #about .icon{ width:60px; height:60px; margin:0 auto 20px; border-radius:16px; background:var(--sky-soft); display:flex; align-items:center; justify-content:center; font-size:28px; color:#0369A1; }
+      #about .icon img{ width:100%; height:100%; object-fit:contain; border-radius:12px; display:block; }
+
+      #about .reason-card h3{ font-family:'Manrope','Inter',sans-serif; font-size:20px; font-weight:600; margin-bottom:14px; letter-spacing:-0.01em; color:#0284C7; position:relative; display:inline-block; }
+
+#about .reason-card h3::after{ content:""; position:absolute; left:50%; bottom:-4px; width:100%; height:2px; background:linear-gradient(90deg,#38BDF8,#0EA5E9); transform:translateX(-50%) scaleX(0); transform-origin:center; transition:transform .35s ease; border-radius:2px; }
+#about .reason-card:hover h3::after{ transform:translateX(-50%) scaleX(1); }
+
+      #about .reason-card p{ font-size:16px; line-height:1.6; color:var(--muted); }
+
+      #about .philosophy{ margin-top:80px; padding:40px; background:var(--sky-soft); border-radius:28px; text-align:center; font-size:20px; font-weight:500; color:#0369A1; letter-spacing:.3px; }
+
+      #about .reasons-heading{ text-align:center; font-family:'Manrope','Inter',sans-serif; font-size:28px; font-weight:700; margin:60px 0 24px; color:#0284C7; letter-spacing:-0.02em; }
+
+      @media(max-width:900px){ #about .reasons{ grid-template-columns:repeat(2,1fr); } }
+      @media(max-width:600px){ #about h2{font-size:34px} #about .about-text{font-size:16px} #about .reasons{ grid-template-columns:1fr; } }
+    </style>
+
+    <div class="about-inner">
+      <h2>About Us</h2>
+
+      <p class="about-text">
+        E‑Cell UMIT is where engineering precision meets entrepreneurial imagination. We exist to bring together
+        analytical minds and visionary thinkers — students who question how things work and dream of how they
+        <em>could</em> work better. Through thoughtfully designed events, collaborative challenges, and real‑world
+        exposure, we help ideas move from curiosity to clarity, and from intent to impact.
+      </p>
+
+      <h3 class="reasons-heading">3 Reasons To Choose Us</h3>
+      <div class="card-grid reasons">
+        <div class="reason-card">
+          <div class="icon"><img src="image/innovation.png" alt="Innovation" loading="lazy"></div>
+          <h3>Innovation First</h3>
+          <p>We nurture curiosity and creative courage, encouraging students to question,
+            explore, and design solutions that challenge the ordinary.</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="icon"><img src="image/execution.png" alt="Execution" loading="lazy"></div>
+          <h3>Execution‑Driven</h3>
+          <p>Ideas matter, but action defines impact. Our events emphasize building,
+            testing, and refining ideas into tangible outcomes.</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="icon"><img src="image/collaboration.png" alt="Collaboration" loading="lazy"></div>
+          <h3>Collaborative Growth</h3>
+          <p>By bringing engineering minds and entrepreneurial thinkers together,
+            we cultivate leadership, teamwork, and long‑term vision.</p>
+        </div>
+      </div>
+
+      <div class="philosophy">We Aspire → We Build → We Create Impact</div>
+    </div>
+  </section>
+
+  <!-- Events Timeline -->
+  <section id="events" class="py-20 bg-white">
+    <style>
+      #events {
+        font-family: 'Segoe UI', sans-serif;
+        /* event section background set to white */
+        background: #ffffff;
+        color: #090706;
+        padding: 2rem;
+      }
+
+      #events h2 {
+        text-align: center;
+        font-size: 2.8rem;
+        margin-bottom: 2.5rem;
+        color: #0e0908;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 800;
+      }
+
+      .events-container {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: flex-start; /* prevent sibling cards from equal-height stretching */
+          }
+
+        /* Layout for timer left, events center, text right */
+        .events-layout {
+          display: grid;
+          grid-template-columns: 380px 1fr 360px;
+          gap: 2rem;
+          align-items: center;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 12px;
+        }
+
+        .sidebar-timer {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+        }
+
+        .event-side-text {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 1.25rem 1rem;
+        }
+
+        .event-side-text .side-inner { max-width: 360px; padding: 6px 8px; }
+
+        /* Apple-style heading: larger, generous spacing, subtle weight */
+        .event-side-text h3 {
+          font-family: 'Inter', 'Montserrat', sans-serif;
+          font-size: 2.8rem;
+          font-style: italic;
+          font-weight: 700;
+          margin: 0 0 6px 0;
+          color: #0284C7;
+          line-height: 1.02;
+          letter-spacing: 0.2px;
+        }
+
+        /* thin, elegant underline */
+.heading-underline {
+  height: 1px;
+  width: 72px;
+  background: linear-gradient(90deg, rgba(125,211,252,0.9), rgba(14,165,233,0.95));
+  margin: 8px auto 18px;
+  border-radius: 1px;
+}
+
+        .event-side-text p {
+          margin: 0 0 0.75rem 0;
+          color: #475569;
+          font-size: 1.02rem;
+          line-height: 1.7;
+          font-weight: 400;
+        }
+
+        @media (max-width: 1024px) {
+          .events-layout { grid-template-columns: 320px 1fr 300px; }
+        }
+
+        @media (max-width: 768px) {
+          /* Stack: countdown above the text on small screens */
+          .events-layout { grid-template-columns: 1fr; gap: 1.25rem; }
+          .sidebar-timer { order: 1; justify-content: center; }
+          .event-side-text { order: 2; padding-top: 0.25rem; }
+          .events-container { order: 3; }
+        }
+
+        /* Row for countdown below events */
+        .countdown-row {
+          display: flex;
+          gap: 2.25rem;
+          justify-content: center;
+          align-items: center;
+          margin-top: 2.25rem;
+          padding: 0 12px 2rem;
+        }
+
+        .countdown-row .event-timer-card {
+          max-width: 360px;
+          padding: 34px 28px 36px;
+          border-radius: 26px;
+          box-shadow: 0 22px 48px rgba(14,165,233,0.08);
+        }
+
+        @media (max-width: 768px) {
+          .countdown-row { flex-direction: column; gap: 1rem; }
+          .countdown-row .event-timer-card { margin: 0; }
+          .event-side-text { width: 100%; justify-content: center; }
+          .event-side-text h3 { font-size: 2rem; }
+          .event-side-text p { font-size: 0.98rem; line-height: 1.6; }
+        }
+
+  .event-card {
+    background: #FFFFFF    ; /* slightly warmer off-white */
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(56,189,248,0.08);
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.4s, box-shadow 0.4s;
+    align-self: flex-start; /* ensure each card sizes to its own content */
+    height: 460px; /* fixed card height so all cards appear uniform */
+  }
+
+  .event-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px rgba(56,189,248,0.28);
+  }
+
+      .event-image {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .date-badge {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: white;
+        border-radius: 12px;
+        padding: 8px 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        font-weight: 700;
+        color: #0284C7;
+        font-size: 0.9rem;
+        text-align: center;
+        width: 48px;
+        user-select: none;
+      }
+
+      .date-badge .day {
+        font-size: 1.2rem;
+        line-height: 1;
+      }
+
+      .date-badge .month {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        line-height: 1;
+      }
+
+      .event-content {
+        padding: 1rem 1.5rem 1.5rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: auto; /* allow expanded content to scroll without resizing card */
+      }
+
+      .event-title {
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        color: #0284C7; /* site blue */
+      }
+
+      .event-description {
+        font-size: 0.9rem;
+        color: #555;
+        flex-grow: 1;
+      }
+
+  .arrow-button {
+    align-self: flex-end;
+    margin-top: 1rem;
+    background: #38bdf8;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .arrow-button:hover {
+    background: #0ea5e9;
+  }
+
+  .arrow-button svg {
+        width: 16px;
+        height: 16px;
+        fill: white;
+      }
+
+      .read-more-btn {
+        align-self: flex-end;
+        margin-top: 1rem;
+        background: #38bdf8;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: background 0.3s ease;
+      }
+
+      .read-more-btn:hover {
+        background: #0ea5e9;
+      }
+
+      @media (max-width: 768px) {
+        .events-container {
+          justify-content: center;
+        }
+        .event-card { height: auto; } /* allow natural height on small screens */
+        .event-content { overflow: visible; }
+      }
+    </style>
+
+    <div style="max-width:1200px;margin:0 auto;padding:0 16px;text-align:center;">
+      <h2> Events & Initiatives </h2>
+      <p class="section-subline">Curated experiences designed to inspire and challenge.</p>
+    </div>
+
+    <div class="events-container">
+
+      <div class="event-card">
+        <div class="date-badge">
+          <div class="day">15</div>
+          <div class="month">DEC</div>
+        </div>
+        <img src="image/event2.jpeg" alt="Startup Day" class="event-image" />
+        <div class="event-content">
+          <h3 class="event-title">Startup Day with L V Rajan Kolath</h3>
+          <p class="event-description">Theme: Building Enterprises that Build the Nation.</p>
+          <div id="extra-dec15" style="display: none;">
+            <p class="event-description">We had the honor of hosting Mr. L V Rajan Kolath, a visionary entrepreneur with 25+ years of expertise in enterprise growth strategy, transformation, and global structuring.<br>
+ Key Highlights:<br>
+Shared insights on sustainable job creation and long-term enterprise value.<br>
+Inspired students with real-world experiences from pharma, green energy, agriculture, EVs, and infrastructure sectors.<br>
+Discussed global impact through VentureBloom Singapore, helping scale SMEs across India, Kenya, UK, USA, and Canada.<br>
+Emphasized the role of digital intelligence (ValidatElia) and ESG initiatives in shaping future-ready businesses.<br>
+ His words left students motivated to innovate fearlessly while staying mindful of sustainability and social responsibility.</p>
+          </div>
+          <button class="read-more-btn" onclick="toggleExtra(this)" aria-label="Toggle more info">Read More</button>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="date-badge">
+          <div class="day">22</div>
+          <div class="month">JAN</div>
+        </div>
+        <img src="image/event3.jpeg" alt="Tech Careers" class="event-image" />
+        <div class="event-content">
+          <h3 class="event-title">Seminar on Non-Coding Tech Careers</h3>
+          <p class="event-description">Exploring opportunities in Product Management, UI/UX, Data Analysis, and Consulting.</p>
+          <div id="extra-jan22" style="display: none;">
+            <p class="event-description">We were thrilled to host Simran Aswani (Principal Product Manager, Assert AI), who broke down the vast opportunities in tech beyond coding.<br>
+ Key Highlights:<br>
+Deep dive into roles like Product Management, UI/UX Design, Data Analysis, and Tech Consulting.<br>
+Real stories from industry projects at Assert AI.<br>
+Q&A session where students explored pathways to enter non-coding yet high-impact roles in the tech world.<br>
+ Takeaway: Tech has space for every passion and skillset - not just programming.</p>
+          </div>
+          <button class="read-more-btn" onclick="toggleExtra(this)" aria-label="Toggle more info">Read More</button>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="date-badge">
+          <div class="day">08</div>
+          <div class="month">FEB</div>
+        </div>
+        <img src="image/event4.jpeg" alt="Treasure Hunt" class="event-image" />
+        <div class="event-content">
+          <h3 class="event-title">Treasure Hunt</h3>
+          <p class="event-description">A thrilling event blending fun, strategy, and teamwork.</p>
+          <div id="extra-feb08" style="display: none;">
+            <p class="event-description">An event that blended fun, strategy, and teamwork into a thrilling adventure!<br>
+ How it worked:<br>
+Teams navigated the campus, solving cryptic entrepreneurial clues.<br>
+Each clue unlocked a step closer to the grand finale.<br>
+The final twist? Break open the mystery Matka to reveal the prize! 🎉<br>
+ The Treasure Hunt turned out to be more than just a game , it taught collaboration, problem-solving, and thinking like an entrepreneur under pressure.</p>
+          </div>
+          <button class="read-more-btn" onclick="toggleExtra(this)" aria-label="Toggle more info">Read More</button>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="date-badge">
+          <div class="day">10</div>
+          <div class="month">MAR</div>
+        </div>
+        <img src="image/Mock interview.jpeg" alt="Mock Interviews" class="event-image" />
+        <div class="event-content">
+          <h3 class="event-title">Mock Interviews</h3>
+          <p class="event-description">Realistic interview practice with faculty and mentors.</p>
+          <div id="extra-mar10" style="display: none;">
+            <p class="event-description">Our Mock Interview sessions are designed to prepare students for real placements & internships.<br>
+Participants faced  University placement head ,professor and + technical interviews conducted by mentors and seniors.<br>
+ Highlights:<br>
+Realistic interview environment.<br>
+Detailed feedback on communication, confidence & subject knowledge.<br>
+Winners were awarded certificates of excellence.<br>
+Takeaway: A confidence boost + interview-ready skills!</p>
+          </div>
+          <button class="read-more-btn" onclick="toggleExtra(this)" aria-label="Toggle more info">Read More</button>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="date-badge">
+          <div class="day">15</div>
+          <div class="month">APR</div>
+        </div>
+        <img src="image/VENTUREVAULT.jpg" alt="Venture Vault" class="event-image" />
+        <div class="event-content">
+          <h3 class="event-title">Venture Vault</h3>
+          <p class="event-description">Our flagship pitching competition where students showcased startup ideas.</p>
+          <div id="extra-apr15" style="display: none;">
+            <p class="event-description">Venture Vault is our flagship idea pitching competition for aspiring entrepreneurs.<br>
+Students pitched their innovative ideas to a panel of judges & mentors.<br>
+ Highlights:<br>
+Opportunity to showcase startup ideas.<br>
+Guidance from industry experts & alumni.<br>
+Best pitches were recognized, and winners were awarded certificates.<br>
+ Takeaway: Turning ideas into ventures!</p>
+          </div>
+          <button class="read-more-btn" onclick="toggleExtra(this)" aria-label="Toggle more info">Read More</button>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="date-badge">
+          <div class="day">21</div>
+          <div class="month">AUG</div>
+        </div>
+        <img src="image/18.jpg" alt="Launchpad@UMIT – August Edition" class="event-image" />
+        <div class="event-content">
+          <h3 class="event-title">Launchpad@UMIT – August Edition</h3>
+          <p class="event-description">Launchpad@UMIT is the flagship initiative of the Entrepreneurship Cell, UMIT, designed to spark innovation, creativity, and entrepreneurial thinking among students.</p>
+          <div id="extra-aug21" style="display: none;">
+            <p class="event-description">Each edition of Launchpad introduces a unique challenge that encourages participants to think outside the box, validate their ideas, and put them into action. From pitching groundbreaking concepts to hustling in real-world simulations, Launchpad creates a platform where students learn the true essence of entrepreneurship — risk-taking, problem-solving, teamwork, and execution.
+<br> its interactive formats, Launchpad empowers budding innovators to:</br>
+<br>Develop entrepreneurial skills in a fun, competitive environment.</br>
+<br> in teams to brainstorm, pitch, and execute ideas.</br>
+<br>Gain hands-on exposure to the hustle and grind of real ventures.</br>
+<br>Compete for prizes, recognition, and a chance to showcase their talent.</br>
+ Whether you dream of becoming a founder or just want to experience the startup spirit, Launchpad@UMIT is your gateway to the world of entrepreneurship.</p>
+          </div>
+          <button class="read-more-btn" onclick="toggleExtra(this)" aria-label="Toggle more info">Read More</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Countdown + Stay Tuned row (below events) -->
+    <div class="countdown-row">
+      <div class="event-timer-card">
+        <div class="label">Event Countdown</div>
+        <div class="event-name">UPCOMING EVENT</div>
+        <div class="circle-wrap">
+          <svg>
+            <circle class="bg" cx="110" cy="110" r="100"></circle>
+            <circle class="progress" cx="110" cy="110" r="100" id="progress"></circle>
+          </svg>
+          <div class="time">
+            <div class="main-time" id="days">00</div>
+            <div class="sub-time">DAYS LEFT</div>
+          </div>
+        </div>
+        <div class="sub-time" id="hms">00 : 00 : 00 (HRS : MIN : SEC)</div>
+      </div>
+
+      <div class="event-side-text">
+        <div class="side-inner">
+          <h3>Stay Tuned !</h3>
+          <div class="heading-underline"></div>
+          <p>Something exciting is on the way.</p>
+          <p>Get ready for innovation, ideas, and experiences that go beyond expectations.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+      // Toggle extra content for only the clicked card (do not affect siblings)
+      function toggleExtra(btn) {
+        const extra = btn.previousElementSibling;
+        const isExpanded = extra.style.display === "block";
+        if (isExpanded) {
+          extra.style.display = "none";
+          btn.innerText = "Read More";
+          btn.setAttribute('aria-expanded', 'false');
+        } else {
+          extra.style.display = "block";
+          btn.innerText = "Show Less";
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      }
+
+      // Circular Countdown Script
+      const targetDate = new Date('2026-01-31T10:00:00').getTime();
+      let initialTimeLeft;
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const timeLeft = targetDate - now;
+
+      if (timeLeft <= 0) {
+          document.getElementById('days').textContent = '00';
+          document.querySelector('.event-name').textContent = 'Bootcamp is now live';
+          document.getElementById('hms').innerHTML = '<a href="#join" class="join-now-btn">Join Now</a>';
+          return;
+        }
+
+        if (!initialTimeLeft) initialTimeLeft = timeLeft;
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        document.getElementById('days').textContent = days.toString().padStart(2, '0');
+        document.getElementById('hms').textContent = `${hours.toString().padStart(2, '0')} : ${minutes.toString().padStart(2, '0')} : ${seconds.toString().padStart(2, '0')} (HRS : MIN : SEC)`;
+
+        // Update progress circle
+        const progress = 1 - (timeLeft / initialTimeLeft);
+        const offset = 628 - (628 * progress);
+        document.getElementById('progress').style.strokeDashoffset = offset;
+      }
+
+      setInterval(updateCountdown, 1000);
+      updateCountdown();
+    </script>
+  </section>
+
+  <!-- Benefit Heading -->
+  <section id="benefit" class="py-12 bg-white">
+    <div style="max-width:1200px;margin:0 auto;padding:0 16px;text-align:center;">
+      <h2 style="font-family: 'Montserrat', sans-serif;font-weight:800;font-size:2rem;margin:0;">What You Will Gain</h2>
+      <p class="section-subline">More than participation — real growth.</p>
+    </div>
+
+  <section class="py-20 bg-white">
+  <div class="radial-wrap">
+
+    <!-- TOP LORE CARD -->
+    <div class="lore-card pos-top">
+      <div class="card-content">
+        <div class="lore-tag">Unlocked Skill</div>
+        <div class="lore-title">Startup Exposure</div>
+        <div class="swap-area">
+          <div class="swap-layer swap-image">
+            <img class="lore-icon" src="image/startup exposure.png" alt="network icon">
+          </div>
+          <div class="swap-layer swap-text">
+            <div class="lore-text">Work on real startup problems, pitch ideas, and understand how ventures are built from scratch.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEFT LORE CARD -->
+    <div class="lore-card pos-left">
+      <div class="card-content">
+        <div class="lore-tag">Connections</div>
+        <div class="lore-title">Networking</div>
+        <div class="swap-area">
+          <div class="swap-layer swap-image">
+            <img class="lore-icon" src="image/networking.png" alt="network icon">
+          </div>
+          <div class="swap-layer swap-text">
+            <div class="lore-text">Interact with founders, mentors, seniors, and like‑minded peers who think beyond classrooms.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CENTER CIRCLE -->
+    <div class="center-circle">Benefits</div>
+
+    <!-- RIGHT LORE CARD -->
+    <div class="lore-card pos-right">
+      <div class="card-content">
+        <div class="lore-tag">Growth Path</div>
+        <div class="lore-title">Skill Building</div>
+        <div class="swap-area">
+          <div class="swap-layer swap-image">
+            <img class="lore-icon" src="image/skill.png" alt="network icon">
+          </div>
+          <div class="swap-layer swap-text">
+            <div class="lore-text">Learn leadership, communication, execution, and problem‑solving through hands‑on experience.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM LORE CARD -->
+    <div class="lore-card pos-bottom">
+      <div class="card-content">
+        <div class="lore-tag">Mindset</div>
+        <div class="lore-title">Leadership</div>
+        <div class="swap-area">
+          <div class="swap-layer swap-image">
+            <img class="lore-icon" src="image/lea.png" alt="network icon">
+          </div>
+          <div class="swap-layer swap-text">
+            <div class="lore-text">Take responsibility, lead teams, and build confidence that stays with you beyond college.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</section>
+
+
+
+  <!-- Join -->
+  <section id="join" class="py-20 bg-primary-50">
+    <div class="max-w-4xl mx-auto px-6 text-center" data-aos="fade-up">
+      <h2 class="text-3xl font-extrabold" style="font-family: 'Montserrat', sans-serif; font-weight: 800; color: #000000;">Join Us</h2>
+      <p class="mt-3 text-slate-700">Become a member or volunteer. Let’s innovate together.</p>
+      <a href="https://forms.gle/cZ9KVLabAWVFG2Z69" class="mt-6 inline-block rounded-2xl bg-primary-600 px-8 py-3 text-white font-semibold shadow-card hover:bg-primary-700">Apply Now</a>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10">
+      <div data-aos="fade-right">
+        <h2 class="text-3xl font-extrabold" style="font-family: 'Montserrat', sans-serif; font-weight: 800; color: #000000;">Contact</h2>
+        <p class="mt-3 text-slate-700">Reach us on socials or visit our campus.</p>
+        <ul class="mt-6 space-y-2 text-slate-700">
+          <li><strong>Instagram:</strong> <a href="https://www.instagram.com/ecellumit" class="text-primary-700 hover:underline">@ecellumit</a></li>
+          <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/company/e-cell-umit/" class="text-primary-700 hover:underline">E‑Cell UMIT</a></li>
+          <li><strong>Email:</strong>elite.umit@gmail.com</li>
+        </ul>
+      </div>
+      <iframe data-aos="fade-left" class="w-full h-80 rounded-3xl border" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.292!2d72.826374!3d19.089687!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c95f2edbf1f9%3A0xabc123!2sUsha%20Mittal%20Institute%20of%20Technology!5e0!3m2!1sen!2sin!4v0000000000" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <footer class="py-10 bg-white border-t text-center text-sm text-slate-600" data-aos="fade-up">© <span id="year"></span> E‑Cell UMIT. All rights reserved.</footer>
+
+    <script>
+      const words = ["Aspire", "Build", "Conquer"];
+      let i = 0;
+      let j = 0;
+      let currentWord = "";
+      let isDeleting = false;
+
+      function type() {
+        const typingElement = document.getElementById("typing");
+
+        if (!isDeleting && j < words[i].length) {
+          currentWord = words[i].substring(0, j + 1);
+          j++;
+        } else if (isDeleting && j > 0) {
+          currentWord = words[i].substring(0, j - 1);
+          j--;
+        }
+
+        typingElement.textContent = currentWord;
+        typingElement.classList.add("fade");
+
+        if (!isDeleting && j === words[i].length) {
+          isDeleting = true;
+          setTimeout(type, 1000); // pause before deleting
+          return;
+        } else if (isDeleting && j === 0) {
+          isDeleting = false;
+          i = (i + 1) % words.length; // loop words
+        }
+
+        setTimeout(type, isDeleting ? 150 : 300); // speed of typing/deleting
+      }
+
+      window.addEventListener('load', () => {
+        AOS.init({ duration: 700, once: true, offset: 80, easing: 'ease-out-cubic' });
+        document.getElementById('year').textContent = new Date().getFullYear();
+        type(); // start the typing animation
+      });
+
+      // Carousel Functionality - Auto-slide only
+      (function() {
+        const slidesContainer = document.querySelector('.slides-container');
+        const heroSection = document.getElementById('hero-section');
+        const heroImg = document.getElementById('hero-img');
+
+        if (!slidesContainer || !heroSection) return;
+
+        function updateHeroBg() {
+          // The active slide is always the second child after rotation
+          const activeSlide = slidesContainer.querySelector('.slide-item:nth-child(2)');
+          if (activeSlide) {
+            const bgImg = activeSlide.getAttribute('data-bg');
+            // On mobile, update the img src; on desktop, update background
+            if (window.innerWidth < 768 && heroImg) {
+              heroImg.src = bgImg;
+            } else {
+              heroSection.style.backgroundImage = `url('${bgImg}')`;
+            }
+          }
+        }
+
+        function nextSlide() {
+          let items = document.querySelectorAll('.slide-item');
+          slidesContainer.insertBefore(items[items.length - 1], items[0]);
+          updateHeroBg();
+        }
+
+        // Initial sync
+        updateHeroBg();
+
+        // Auto-slide every 3 seconds
+        setInterval(nextSlide, 3000);
+      })();
+    </script>
+
+  <!-- E-CELL UMIT Animation removed -->
+
+
+  <script src="scripts.js"></script>
+</body>
+</html>

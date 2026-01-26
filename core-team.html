@@ -1,0 +1,747 @@
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>E‑Cell UMIT | Core Team 2025-26</title>
+
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            }
+          },
+          boxShadow: {
+            card: '0 10px 30px rgba(14,165,233,0.12)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- AOS (Animate on Scroll) -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <script defer="" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      background: #ffffff;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Cabin Condensed', 'Inter', sans-serif;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Coordinator Container Styles */
+    .coordinator-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .coordinator-container .team-card {
+      width: 250px; /* Match the min width of grid items */
+      max-width: 250px; /* Ensure it doesn't exceed */
+    }
+
+    /* Team Section Styles */
+    .team-grid {
+      /* Responsive CSS Grid layout */
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px; /* equal gutters */
+      justify-content: center;
+      grid-auto-flow: row;
+      font-family: 'Poppins', sans-serif;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 16px;
+      box-sizing: border-box;
+    }
+
+    .team-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 350px; /* equal height for all cards */
+      width: 100%;
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.12), 0 0 36px rgba(255,215,0,0.22);
+      border: 1px solid rgba(255,215,0,0.22);
+      padding: 1rem;
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+      position: relative; /* fixes hover expansion glitch by constraining absolute children */
+      isolation: isolate; /* isolate stacking context to prevent bleed-through */
+      overflow: hidden; /* contain absolute positioned elements */
+      z-index: 0;
+      box-sizing: border-box;
+    }
+
+    /* Hover: scale the card for zoom effect */
+    .team-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.18), 0 0 60px rgba(255,215,0,0.20);
+      z-index: 10; /* bring hovered card above neighbours without reflow */
+    }
+
+    .team-image-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid #fff;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      /* Only animate transforms to avoid layout reflow */
+      transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* Keep image and container dimensions fixed to avoid layout changes */
+    .team-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.5s ease;
+    }
+
+
+
+    .coordinator-container .team-card:hover .team-image,
+    .coordinator-container .team-card.active .team-image {
+      opacity: 0;
+    }
+
+    .team-card:hover .team-image-container,
+    .team-card.active .team-image-container {
+      overflow: visible;
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+
+    /* Full-card image fill used for the 'widen to full card' hover effect.
+       This is absolutely positioned so it doesn't affect layout metrics. */
+    .team-image-fill {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: inherit;
+      opacity: 0;
+      transform: scale(0.98);
+      transition: opacity 0.32s ease, transform 0.32s ease;
+      z-index: 2; /* sits above bottom but below overlay */
+      pointer-events: none;
+    }
+
+    /* Show the full-card image on hover or when active is active */
+    .team-card:hover .team-image-fill,
+    .team-card.active .team-image-fill {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Overlay sits absolutely over the image area; only animate opacity */
+    .team-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.32), rgba(0,0,0,0.72));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.32s ease;
+      z-index: 3;
+    }
+
+    /* Show overlay via opacity only (no translate) */
+    .team-card:hover .team-overlay,
+    .team-card.active .team-overlay {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .overlay-content {
+      text-align: center;
+      color: white;
+      padding: 1rem;
+    }
+
+    /* Fade + slight scale for text (no translate) */
+    .overlay-content .role {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #ffd700;
+      opacity: 0;
+      transform: scale(0.98);
+      transition: opacity 0.32s ease 0.08s, transform 0.32s ease 0.08s;
+    }
+
+    .team-card:hover .overlay-content .role,
+    .team-card.active .overlay-content .role {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .overlay-content .name {
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: scale(0.98);
+      transition: opacity 0.32s ease 0.16s, transform 0.32s ease 0.16s;
+    }
+
+    .team-card:hover .overlay-content .name,
+    .team-card.active .overlay-content .name {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .icons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.98);
+      transition: opacity 0.32s ease 0.24s, transform 0.32s ease 0.24s;
+    }
+
+    .team-card:hover .icons,
+    .team-card.active .icons {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      font-size: 1.2rem;
+      transition: background 0.3s ease, transform 0.3s ease;
+      text-decoration: none;
+    }
+
+    .icon:hover {
+      background: rgba(255,255,255,0.2);
+      transform: scale(1.06);
+    }
+
+    .linkedin-icon:hover,
+    .gmail-icon:hover {
+      transform: scale(1.06);
+    }
+
+    .team-bottom {
+      padding: 1rem;
+      background: white;
+      text-align: center;
+      z-index: 1;
+      position: relative;
+    }
+
+    /* Keep bottom visible (no layout change) but allow opacity change for visual effect */
+    .team-card:hover .team-bottom,
+    .team-card.active .team-bottom {
+      opacity: 0.0;
+      transition: opacity 0.28s ease;
+    }
+    .role-bottom {
+      font-weight: bold;
+      color: black;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .name-bottom {
+      color: black;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+        gap: 32px; /* Increased spacing for vertical layout */
+      }
+
+      .team-card {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        min-height: unset;
+        margin: 0 auto; /* Center the cards */
+      }
+
+      .coordinator-container .team-card .team-image-container {
+        width: 140px;
+        height: 140px;
+      }
+
+      .overlay-content .name {
+        font-size: 1.4rem;
+      }
+
+      .icon {
+        width: 45px;
+        height: 45px;
+      }
+
+      /* Make last three cards grid responsive */
+      .last-three-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* Keep card size constant on mobile - prevent expansion on hover/touch */
+      .team-card:hover .team-image-container,
+      .team-card.active .team-image-container {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        position: relative;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .coordinator-container .team-card:hover .team-image-container,
+      .coordinator-container .team-card.active .team-image-container {
+        width: 140px;
+        height: 140px;
+      }
+    }
+
+    /* Section subline styling (muted supporting line under headings) */
+    .section-subline {
+      display: block;
+      font-size: 0.98rem;
+      font-style: italic;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      color: #000000;
+      margin-top: 0.1rem; /* closer to heading */
+      margin-bottom: 1rem;
+      text-align: center;
+      max-width: 880px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+
+    .section-subline::before,
+    .section-subline::after { color: rgba(2,132,199,0.92); font-style: italic; }
+    .section-subline::before { content: '“\00a0'; }
+    .section-subline::after  { content: '\00a0”'; }
+
+    /* Underline for all section headings except About */
+    section:not(#about) h2 { position: relative; padding-bottom: 0.5rem; }
+    section:not(#about) h2::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -6px;
+      width: 72px;
+      height: 3px;
+      background: linear-gradient(90deg,#7dd3fc,#0ea5e9);
+      border-radius: 2px;
+      opacity: 0.95;
+    }
+
+    /* Specific underline for contact heading: left-aligned */
+    #contact h2 {
+      display: inline-block;
+      border-bottom: 3px solid #0ea5e9;
+      padding-bottom: 0.5rem;
+    }
+    #contact h2::after {
+      display: none;
+    }
+    
+  </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.absolute{position:absolute}.sticky{position:sticky}.right-4{right:1rem}.top-0{top:0px}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-10{margin-bottom:2.5rem}.ml-2{margin-left:0.5rem}.mt-2{margin-top:0.5rem}.flex{display:flex}.hidden{display:none}.h-16{height:4rem}.h-9{height:2.25rem}.w-56{width:14rem}.w-9{width:2.25rem}.max-w-7xl{max-width:80rem}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-3{gap:0.75rem}.gap-6{gap:1.5rem}.overflow-hidden{overflow:hidden}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-primary-100{--tw-border-opacity:1;border-color:rgb(224 242 254 / var(--tw-border-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/70{background-color:rgb(255 255 255 / 0.7)}.object-contain{object-fit:contain}.p-2{padding:0.5rem}.p-3{padding:0.75rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-20{padding-top:5rem;padding-bottom:5rem}.text-center{text-align:center}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.tracking-tight{letter-spacing:-0.025em}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.hover\:bg-gray-100:hover{--tw-bg-opacity:1;background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))}.hover\:text-primary-700:hover{--tw-text-opacity:1;color:rgb(3 105 161 / var(--tw-text-opacity, 1))}@media (min-width: 640px){.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:text-xl{font-size:1.25rem;line-height:1.75rem}}@media (min-width: 768px){.md\:flex{display:flex}.md\:hidden{display:none}}@media (min-width: 1024px){.lg\:px-8{padding-left:2rem;padding-right:2rem}}</style></head>
+<body data-aos-easing="ease-out-cubic" data-aos-duration="700" data-aos-delay="0">
+  <!-- Navbar -->
+  <header class="sticky top-0 z-50 bg-white/70 backdrop-blur border-b border-primary-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="indexx.html" class="flex items-center gap-3">
+          <img src="image/officiallogo.png" alt="E-Cell UMIT Logo" class="h-9 w-9 rounded-2xl object-contain">
+          <span class="font-extrabold text-lg sm:text-xl tracking-tight">E‑Cell UMIT</span>
+        </a>
+        <!-- Mobile menu toggle (visible on small screens) -->
+        <button id="mobile-nav-toggle" class="md:hidden ml-2 p-2 rounded-lg" aria-expanded="false" aria-label="Open menu">
+          <i class="fas fa-bars"></i>
+        </button>
+        <nav class="hidden md:flex items-center gap-6 font-medium">
+          <a href="indexx.html" class="hover:text-primary-700">Home</a>
+          <a href="indexx.html#about" class="hover:text-primary-700">About</a>
+          <a href="#team" class="hover:text-primary-700">Core Team</a>
+          <a href="indexx.html#events" class="hover:text-primary-700">Events</a>
+          <a href="indexx.html#join" class="hover:text-primary-700">Join Us</a>
+          <a href="indexx.html#contact" class="hover:text-primary-700">Contact</a>
+        </nav>
+      </div>
+    </div>
+    <!-- Mobile menu (hidden by default) -->
+    <div id="mobile-menu" class="hidden md:hidden absolute right-4 mt-2 w-56 bg-white rounded-md shadow-lg overflow-hidden z-50">
+      <div class="flex flex-col p-3">
+        <a href="indexx.html" class="py-2 px-2 hover:bg-gray-100 rounded">Home</a>
+        <a href="indexx.html#about" class="py-2 px-2 hover:bg-gray-100 rounded">About</a>
+        <a href="#team" class="py-2 px-2 hover:bg-gray-100 rounded">Core Team</a>
+        <a href="indexx.html#events" class="py-2 px-2 hover:bg-gray-100 rounded">Events</a>
+        <a href="indexx.html#join" class="py-2 px-2 hover:bg-gray-100 rounded">Join Us</a>
+        <a href="indexx.html#contact" class="py-2 px-2 hover:bg-gray-100 rounded">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Core Team -->
+  <section id="team" class="py-20">
+    <div class="max-w-7xl mx-auto px-6 aos-init aos-animate" data-aos="fade-up">
+      <h2 class="text-3xl font-extrabold mb-10 text-center" style="font-family: 'Montserrat', sans-serif; font-weight: 800; color: #000000; text-shadow: none;">Core Team 2025-26</h2>
+      <p class="section-subline">Meet the leaders shaping innovation, collaboration, and entrepreneurial excellence at E-Cell UMIT.</p>
+
+      <!-- Coordinator Card at Top Center -->
+      <div class="coordinator-container aos-init aos-animate" data-aos="zoom-in">
+        <div class="team-card aos-init aos-animate" data-aos="zoom-in">
+          <div class="team-image-container">
+            <img src="image/bharatsir.png" alt="Coordinator" class="team-image">
+          </div>
+          <div class="team-image-fill" style="background-image: url('image/bharatsir.png');"></div>
+          <div class="team-overlay">
+            <div class="overlay-content">
+              <div class="role">COORDINATOR</div>
+              <div class="name">Prof. Bharat Patil</div>
+              <div class="icons">
+                 <a href="https://www.linkedin.com/in/bharat-p-057b60a8" target="_blank" rel="noopener noreferrer" class="icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:elite.umit@gmail.com" class="icon"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-bottom">
+            <div class="role-bottom">Coordinator</div>
+            <div class="name-bottom">Prof. Bharat Patil</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-grid">
+
+        <!-- Chairperson -->
+        <div class="team-card aos-init aos-animate" data-aos="zoom-in">
+          <div class="team-image-container">
+            <img src="image/1.png" alt="Chairperson" class="team-image">
+          </div>
+          <div class="team-image-fill" style="background-image: url(&quot;image/1.png&quot;);"></div><div class="team-overlay">
+            <div class="overlay-content">
+              <div class="role">CHAIRPERSON</div>
+              <div class="name">Chaitanya Parab</div>
+              <div class="icons">
+                <a href="https://www.linkedin.com/in/chaitanya-parab-898b4b2bb"  target="_blank" rel="noopener noreferrer" class="icon">
+    <i class="fab fa-linkedin-in"></i>
+    <a href="mailto:chaitanya.ecell.umit@gmail.com" class="icon"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-bottom">
+            <div class="role-bottom">Chairperson</div>
+            <div class="name-bottom">Chaitanya Parab (AI-3)</div>
+          </div>
+        </div>
+
+        <!-- Co-Chairperson -->
+        <div class="team-card aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
+          <div class="team-image-container">
+            <img src="image/2.png" alt="Co-Chairperson" class="team-image">
+          </div>
+          <div class="team-image-fill" style="background-image: url(&quot;image/2.png&quot;);"></div><div class="team-overlay">
+            <div class="overlay-content">
+              <div class="role">CO-CHAIRPERSON</div>
+              <div class="name">Manaswi Swar</div>
+              <div class="icons">
+                 <a href="https://www.linkedin.com/in/manaswiswar" target="_blank" rel="noopener noreferrer" class="icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:Manaswiswar.ecell.umit@gmail.com" class="icon"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-bottom">
+            <div class="role-bottom">Co-Chairperson</div>
+            <div class="name-bottom">Manaswi Swar (ENC-3)</div>
+          </div>
+        </div>
+
+        <!-- Secretary -->
+        <div class="team-card aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
+          <div class="team-image-container">
+            <img src="image/3.png" alt="Secretary" class="team-image">
+          </div>
+          <div class="team-image-fill" style="background-image: url(&quot;image/3.png&quot;);"></div><div class="team-overlay">
+            <div class="overlay-content">
+              <div class="role">SECRETARY</div>
+              <div class="name">Bhumika Karan</div>
+              <div class="icons">
+                 <a href="https://www.linkedin.com/in/bhumika-karan-7448b4292" target="_blank" rel="noopener noreferrer" class="icon"><i class="fab fa-linkedin-in"></i>
+                <a href="mailto:chaitanya.ecell.umit@gmail.com" class="icon"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-bottom">
+            <div class="role-bottom">Secretary</div>
+            <div class="name-bottom">Bhumika Karan (IT-3)</div>
+          </div>
+        </div>
+
+        <!-- Finance Head -->
+        <div class="team-card aos-init aos-animate" data-aos="zoom-in" data-aos-delay="300">
+          <div class="team-image-container">
+            <img src="image/4.png" alt="Finance Head" class="team-image">
+          </div>
+          <div class="team-image-fill" style="background-image: url(&quot;image/4.png&quot;);"></div><div class="team-overlay">
+            <div class="overlay-content">
+              <div class="role">FINANCE HEAD</div>
+              <div class="name">Shifa Mujahid</div>
+              <div class="icons">
+                  <a href="https://www.linkedin.com/in/shifa-mujahid-14aa63318" target="_blank" rel="noopener noreferrer" class="icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:shifamujahid471@gmail.com" class="icon"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-bottom">
+            <div class="role-bottom">Finance Head</div>
+            <div class="name-bottom">Shifa Mujahid (IT-3)</div>
+          </div>
+        </div>
+
+        <!-- Graphics & Social Media Head and PR Head -->
+        <div class="team-card aos-init aos-animate" data-aos="zoom-in" data-aos-delay="400">
+          <div class="team-image-container">
+            <img src="image/5.png" alt="Graphics &amp; Social Media Head and PR Head" class="team-image">
+          </div>
+          <div class="team-image-fill" style="background-image: url(&quot;image/5.png&quot;);"></div><div class="team-overlay">
+            <div class="overlay-content">
+              <div class="role">GRAPHICS &amp; SOCIAL MEDIA HEAD</div>
+              <div class="name">Rutuja Sonde</div>
+              <div class="icons">
+                  <a href="https://www.linkedin.com/in/rutuja-sonde-610a0b2b9" target="_blank" rel="noopener noreferrer" class="icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:rutujasonde@gmail.com" class="icon"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-bottom">
+            <div class="role-bottom">Graphics &amp; Social Media Head and PR Head</div>
+            <div class="name-bottom">Rutuja Sonde (CE-3)</div>
+          </div>
+        </div>
+
+        <!-- Technical Head -->
+        <div class="team-card aos-init aos-animate" data-aos="zoom-in" data-aos-delay="500">
+          <div class="team-image-container">
+            <img src="image/6.png" alt="Technical Head" class="team-image">
+          </div>
+          <div class="team-image-fill" style="background-image: url(&quot;image/6.png&quot;);"></div><div class="team-overlay">
+            <div class="overlay-content">
+              <div class="role">TECHNICAL HEAD</div>
+              <div class="name">Priya Shukla</div>
+              <div class="icons">
+                  <a href="https://www.linkedin.com/in/priya-shukla-97b393259"target="_blank" rel="noopener noreferrer" class="icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:priyaashukla07@gmail.com" class="icon"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-bottom">
+            <div class="role-bottom">Technical Head</div>
+            <div class="name-bottom">Priya Shukla (ENC-3)</div>
+          </div>
+        </div>
+
+        <!-- Marketing Head -->
+        <div class="team-card aos-init aos-animate" data-aos="zoom-in" data-aos-delay="600">
+          <div class="team-image-container">
+            <img src="image/7.png" alt="Marketing Head" class="team-image">
+          </div>
+          <div class="team-image-fill" style="background-image: url(&quot;image/7.png&quot;);"></div><div class="team-overlay">
+            <div class="overlay-content">
+              <div class="role">MARKETING HEAD</div>
+              <div class="name">Chaitni Pimpalshende</div>
+              <div class="icons">
+                 <a href="https://www.linkedin.com/in/chaitni-pimpalshende-6739a728a"target="_blank" rel="noopener noreferrer" class="icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:chaitnispimpalshende2003@gmail.com" class="icon"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-bottom">
+            <div class="role-bottom">Marketing Head</div>
+            <div class="name-bottom">Chaitni Pimpalshende (AI-3)</div>
+          </div>
+        </div>
+
+        <!-- Event Head -->
+        <div class="team-card aos-init aos-animate" data-aos="zoom-in" data-aos-delay="700">
+          <div class="team-image-container">
+            <img src="image/8.png" alt="Event Head" class="team-image">
+          </div>
+          <div class="team-image-fill" style="background-image: url(&quot;image/8.png&quot;);"></div><div class="team-overlay">
+            <div class="overlay-content">
+              <div class="role">EVENT HEAD</div>
+              <div class="name">Smita Wagh</div>
+              <div class="icons">
+                  <a href="https://www.linkedin.com/in/smita-wagh-42733a292"target="_blank" rel="noopener noreferrer" class="icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:smitawagh49@gmail.com" class="icon"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-bottom">
+            <div class="role-bottom">Event Head</div>
+            <div class="name-bottom">Smita Wagh (IT-3)</div>
+          </div>
+        </div>
+
+        <!-- Sponsorship Head -->
+        <div class="team-card aos-init aos-animate" data-aos="zoom-in" data-aos-delay="800">
+          <div class="team-image-container">
+            <img src="image/9.png" alt="Sponsorship Head" class="team-image">
+          </div>
+          <div class="team-image-fill" style="background-image: url(&quot;image/9.png&quot;);"></div><div class="team-overlay">
+            <div class="overlay-content">
+              <div class="role">SPONSORSHIP HEAD</div>
+              <div class="name">Saniya Raut</div>
+              <div class="icons">
+                 <a href="https://www.linkedin.com/in/saniya-raut-093baa32b"target="_blank" rel="noopener noreferrer" class="icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:saniyaraut275@gmail.com" class="icon"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-bottom">
+            <div class="role-bottom">Sponsorship Head</div>
+            <div class="name-bottom">Saniya Raut (AI-3)</div>
+          </div>
+        </div>
+
+        <!-- PR Head -->
+        <div class="team-card aos-init aos-animate" data-aos="zoom-in" data-aos-delay="900">
+          <div class="team-image-container">
+            <img src="image/10.png" alt="PR Head" class="team-image">
+          </div>
+          <div class="team-image-fill" style="background-image: url(&quot;image/10.png&quot;);"></div><div class="team-overlay">
+            <div class="overlay-content">
+              <div class="role">PR HEAD</div>
+              <div class="name">Sharayu Deshmukh</div>
+              <div class="icons">
+                  <a href="https://www.linkedin.com/in/sharayu-deshmukh-1752592a1"target="_blank" rel="noopener noreferrer" class="icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:sharayud2806@gmail.com" class="icon"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-bottom">
+            <div class="role-bottom">PR Head</div>
+            <div class="name-bottom">Sharayu Deshmukh (ENC-3)</div>
+          </div>
+        </div>
+
+        <!-- Creative Head -->
+        <div class="team-card aos-init aos-animate" data-aos="zoom-in" data-aos-delay="1000">
+          <div class="team-image-container">
+            <img src="image/11.png" alt="Creative Head" class="team-image">
+          </div>
+          <div class="team-image-fill" style="background-image: url(&quot;image/11.png&quot;);"></div><div class="team-overlay">
+            <div class="overlay-content">
+              <div class="role">CREATIVE HEAD</div>
+              <div class="name">Rutuja Deokar</div>
+              <div class="icons">
+                <a href="https://www.linkedin.com/in/rutuja-deokar-6358a9289" target="_blank" rel="noopener noreferrer" class="icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:rutujadeokar2003@gmail.com" class="icon"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-bottom">
+            <div class="role-bottom">Creative Head</div>
+            <div class="name-bottom">Rutuja Deokar (CE-3)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10">
+      <div data-aos="fade-right">
+        <h2 class="text-3xl font-extrabold" style="font-family: 'Montserrat', sans-serif; font-weight: 800; color: #000000;">Contact</h2>
+        <p class="mt-3 text-slate-700">Reach us on socials or visit our campus.</p>
+        <ul class="mt-6 space-y-2 text-slate-700">
+          <li><strong>Instagram:</strong> <a href="https://www.instagram.com/ecellumit" class="text-primary-700 hover:underline">@ecellumit</a></li>
+          <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/company/e-cell-umit/" class="text-primary-700 hover:underline">E‑Cell UMIT</a></li>
+          <li><strong>Email:</strong>elite.umit@gmail.com</li>
+        </ul>
+      </div>
+      <iframe data-aos="fade-left" class="w-full h-80 rounded-3xl border" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.292!2d72.826374!3d19.089687!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c95f2edbf1f9%3A0xabc123!2sUsha%20Mittal%20Institute%20of%20Technology!5e0!3m2!1sen!2sin!4v0000000000" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <footer class="py-10 bg-white border-t text-center text-sm text-slate-600">© <span id="year">2026</span> E‑Cell UMIT. All rights reserved.</footer>
+
+  <script>
+    window.addEventListener('load', () => {
+      AOS.init({ duration: 700, once: true, offset: 80, easing: 'ease-out-cubic' });
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+
+
+  </script>
+  <script src="scripts.js"></script>
+
+
+</body></html>
