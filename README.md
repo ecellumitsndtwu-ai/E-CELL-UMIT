@@ -1,2 +1,2 @@
 # E-CELL-UMIT
-official website of E-CELL UMIT
+Official repository for the E-Cell UMIT website.
