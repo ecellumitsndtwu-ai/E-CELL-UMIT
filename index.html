@@ -1845,14 +1845,7 @@ Best pitches were recognized, and winners were awarded certificates.<br>
       scroll-margin-top: 5rem;
     }
 
-    #blogs * {
-      box-sizing: border-box;
-    }
-
-    #blogs .blogs-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-    }
+    #blogs .blogs-inner { max-width: 1120px; margin: 0 auto; }
 
     #blogs .blogs-heading {
       text-align: center;
@@ -1885,9 +1878,7 @@ Best pitches were recognized, and winners were awarded certificates.<br>
       letter-spacing: -.04em;
     }
 
-    #blogs h2::after {
-      display: none !important;
-    }
+    #blogs h2::after { display: none !important; }
 
     #blogs .blogs-intro {
       color: #64748b;
@@ -1905,50 +1896,42 @@ Best pitches were recognized, and winners were awarded certificates.<br>
     }
 
     /* Blog card */
+
     #blogs .blogs-card {
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
       overflow: hidden;
       background: #ffffff;
       border: 1px solid #e2e8f0;
       border-radius: 1.25rem;
-      box-shadow: 0 16px 42px rgba(15, 23, 42, .08);
-      transition: transform .25s ease,
-                  box-shadow .25s ease,
-                  border-color .25s ease;
+      box-shadow: 0 16px 42px rgba(15,23,42,.08);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
     }
 
     #blogs .blogs-card:hover {
       transform: translateY(-4px);
       border-color: #bae6fd;
-      box-shadow: 0 24px 50px rgba(2, 132, 199, .13);
+      box-shadow: 0 24px 50px rgba(2,132,199,.13);
     }
 
     #blogs .blogs-cover {
       display: block;
       width: 100%;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 16 / 7;
       object-fit: cover;
       object-position: center;
       background: #e0f2fe;
     }
 
     #blogs .blogs-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      padding: 1.4rem;
+      padding: clamp(1.25rem, 3vw, 2.25rem);
     }
 
     #blogs .blogs-category {
-      align-self: flex-start;
       display: inline-flex;
       padding: .4rem .7rem;
       border-radius: 999px;
       background: #e0f2fe;
       color: #0369a1;
-      font-size: .7rem;
+      font-size: .75rem;
       font-weight: 800;
       letter-spacing: .04em;
       line-height: 1.5;
@@ -1956,52 +1939,50 @@ Best pitches were recognized, and winners were awarded certificates.<br>
     }
 
     #blogs .blogs-title {
-      margin: 1rem 0 .65rem;
+      margin: 1rem 0 .55rem;
       color: #0f172a !important;
       font-family: 'Montserrat', 'Inter', sans-serif;
       font-size: clamp(1.25rem, 1.55vw, 1.65rem);
       line-height: 1.3;
+
       font-weight: 800;
       letter-spacing: -.035em;
-      overflow-wrap: anywhere;
     }
 
     #blogs .blogs-subtitle {
       color: #0369a1;
-      font-size: .96rem;
-      line-height: 1.65;
+      font-size: 1.05rem;
+      line-height: 1.6;
       font-weight: 700;
       margin: 0 0 1rem;
     }
 
     #blogs .blogs-excerpt {
       color: #475569;
-      font-size: .92rem;
-      line-height: 1.8;
-      margin: 0;
+      font-size: .98rem;
+      line-height: 1.85;
     }
 
     #blogs .blogs-meta {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       flex-wrap: wrap;
-      gap: .65rem .85rem;
+      gap: .75rem 1rem;
       margin-top: 1.25rem;
       color: #64748b;
-      font-size: .78rem;
-      line-height: 1.5;
+      font-size: .83rem;
     }
 
     #blogs .blogs-meta span {
       display: inline-flex;
       align-items: center;
-      gap: .35rem;
+      gap: .4rem;
     }
 
     #blogs details {
-      margin-top: auto;
-      padding-top: 1.2rem;
+      margin-top: 1.5rem;
       border-top: 1px solid #e2e8f0;
+      padding-top: 1.2rem;
     }
 
     #blogs summary {
@@ -2012,13 +1993,10 @@ Best pitches were recognized, and winners were awarded certificates.<br>
       gap: .6rem;
       color: #0369a1;
       font-weight: 800;
-      font-size: .9rem;
-      line-height: 1.5;
+      font-size: .95rem;
     }
 
-    #blogs summary::-webkit-details-marker {
-      display: none;
-    }
+    #blogs summary::-webkit-details-marker { display: none; }
 
     #blogs summary::after {
       content: '+';
@@ -2026,21 +2004,16 @@ Best pitches were recognized, and winners were awarded certificates.<br>
       line-height: 1;
     }
 
-    #blogs details[open] summary::after {
-      content: '−';
-    }
+    #blogs details[open] summary::after { content: '−'; }
 
     #blogs .blogs-full-article {
       padding-top: 1.1rem;
       color: #475569;
-      font-size: .92rem;
-      line-height: 1.85;
-      overflow-wrap: anywhere;
+      font-size: .98rem;
+      line-height: 1.9;
     }
 
-    #blogs .blogs-full-article p {
-      margin: 0 0 1rem;
-    }
+    #blogs .blogs-full-article p { margin: 0 0 1rem; }
 
     #blogs .blogs-full-article h3 {
       color: #0f172a;
@@ -2050,7 +2023,7 @@ Best pitches were recognized, and winners were awarded certificates.<br>
     }
 
     #blogs .blogs-question {
-      padding: 1rem;
+      padding: 1rem 1.1rem;
       background: #f0f9ff;
       border-left: 4px solid #0284c7;
       border-radius: .5rem;
@@ -2083,17 +2056,13 @@ Best pitches were recognized, and winners were awarded certificates.<br>
 
     /* Mobile: one blog per row */
     @media (max-width: 600px) {
+
       #blogs {
         padding: 3.25rem 1rem;
       }
 
       #blogs .blogs-heading {
         margin-bottom: 1.75rem;
-      }
-
-      #blogs .blogs-grid {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 1.5rem;
       }
 
       #blogs .blogs-card {
@@ -2103,7 +2072,12 @@ Best pitches were recognized, and winners were awarded certificates.<br>
       }
 
       #blogs .blogs-cover {
+        display: block;
+        width: 100%;
+        height: auto;
         aspect-ratio: 16 / 9;
+        object-fit: cover;
+        object-position: center;
       }
 
       #blogs .blogs-content {
@@ -2112,15 +2086,6 @@ Best pitches were recognized, and winners were awarded certificates.<br>
 
       #blogs .blogs-title {
         font-size: 1.55rem;
-      }
-
-      #blogs .blogs-subtitle {
-        font-size: 1rem;
-      }
-
-      #blogs .blogs-excerpt,
-      #blogs .blogs-full-article {
-        font-size: .95rem;
       }
     }
 
@@ -2329,62 +2294,75 @@ Best pitches were recognized, and winners were awarded certificates.<br>
           <div class="blogs-meta">
             <span>✍️ E-Cell UMIT</span>
             <span>📖 2 min read</span>
-          </div>
 
-          <details>
-            <summary>Read the full article</summary>
+    <article class="blogs-card">
+      <img
+        class="blogs-cover"
+        src="/images/Screenshot%202026-10-13%20225720.png"
+        alt="Mumbai city representing entrepreneurship and startup opportunities"
+        loading="lazy"
+      >
 
-            <div class="blogs-full-article">
-              <p>
-                Many aspiring entrepreneurs believe they need funding, a team, an office,
-                and a perfect app before they can begin.
-              </p>
+      <div class="blogs-content">
+        <span class="blogs-category">Entrepreneurship · Mumbai</span>
 
-              <p>
-                But what if the first step is simply testing whether anyone needs their idea?
-              </p>
+        <h3 class="blogs-title">Mumbai’s Chaos Is a Business Opportunity</h3>
 
-              <p>
-                Suppose you want to build a platform for students to find affordable
-                second-hand books. Before developing an app, you could create a simple
-                form, collect listings from students, and manually connect buyers with sellers.
-              </p>
+        <p class="blogs-subtitle">
+          What if Mumbai's biggest problems are tomorrow's startup ideas?
+        </p>
 
-              <p>
-                No expensive technology. No complicated launch. Just a small experiment.
-              </p>
+        <p class="blogs-excerpt">
+          Mumbai teaches entrepreneurship without ever calling it entrepreneurship.
+          A crowded local train. A never-ending queue. A student searching for an
+          affordable PG. A small shop struggling to reach customers. We call these
+          everyday problems. An entrepreneur might call them opportunities.
+        </p>
 
-              <p>
-                This approach helps you answer three important questions:
-                Do people have this problem? Will they use your solution?
-                Is there a sustainable way to deliver it?
-              </p>
-
-              <p>
-                Free tools, spreadsheets, social media, and conversations can help you
-                test many ideas. You may eventually need money for technology, marketing,
-                or operations, but you don't always need it to begin learning.
-              </p>
-
-              <p>
-                Remember, <strong>a prototype is not proof of a successful business.
-                It's a way to discover what works before spending more.</strong>
-              </p>
-
-              <p>
-                Your first goal isn't to look like a startup founder.
-                It's to understand your future customers.
-              </p>
-
-              <div class="blogs-question">
-                Your turn: If you had ₹0 to start a business today, what would you test first?
-              </div>
-            </div>
-          </details>
+        <div class="blogs-meta">
+          <span aria-label="Author">✍️ E-Cell UMIT</span>
+          <span>📍 Mumbai, India</span>
+          <span>📖 2 min read</span>
         </div>
-      </article>
 
-    </div>
+        <details>
+          <summary>Read the full article</summary>
+
+          <div class="blogs-full-article">
+            <p>
+              Imagine a platform that helps students find verified accommodation
+              near their colleges, or a service that connects restaurants with
+              customers looking for safe, unsold food at discounted prices.
+            </p>
+
+            <p>
+              These ideas don't need to begin with huge investments. They can start
+              with one observation, a few conversations, and a simple experiment.
+            </p>
+
+            <p>
+              But not every problem is a business opportunity. People must genuinely
+              need the solution, and it must be practical and sustainable.
+            </p>
+
+            <p>
+              So, instead of asking,
+              <em>“What startup should I build?”</em>, ask,
+              <em>“What problem do people around me struggle with every day?”</em>
+            </p>
+
+            <p>
+              Sometimes, the next big idea isn't waiting to be invented.
+              It's waiting to be noticed.
+            </p>
+
+            <div class="blogs-question">
+              Your turn: What everyday problem in Mumbai would you solve if you could?
+            </div>
+          </div>
+        </details>
+      </div>
+    </article>
   </div>
 </section>
 
